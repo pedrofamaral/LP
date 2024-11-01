@@ -1,0 +1,36 @@
+1.(defun calcule (operacao x y)
+  (cond
+    ((string= operacao "+") (+ x y))           ; Adição
+    ((string= operacao "-") (- x y))           ; Subtração
+    ((string= operacao "*") (* x y))           ; Multiplicação
+    ((string= operacao "/")                    ; Divisão
+     (if (zerop y)                             ; Verifica se o divisor é zero
+         (format t "Erro: Divisão por zero!")  ; Exibe mensagem de erro
+         (/ x y)))                             ; Realiza a divisão
+    (t (format t "Erro: Operação desconhecida!")))) ; Caso de operação inválida
+
+
+2.(defun calcula-media (nota1 nota2 nota3)
+  (if (or (< nota1 0) (< nota2 0) (< nota3 0))  ; Verifica se alguma nota é negativa
+      -1                                        ; Retorna -1 se houver nota negativa
+      (/ (+ nota1 nota2 nota3) 3.0)))           ; Caso contrário, calcula a média
+
+
+3.(defun maior (a b c)
+  (max a b c))  ; Utiliza a função embutida max para encontrar o maior número
+
+
+4.(defun contar-ate-zero (n)
+  (if (< n 0)
+      (format t "Erro: Número inválido. Deve ser positivo.")
+      (progn
+        (format t "~a " n)
+        (when (> n 0)
+          (contar-ate-zero (- n 1))))))
+
+
+5.(defun multiplica (a b)
+  (if (or (= a 0) (= b 0))
+      0                                       ; Caso base: qualquer número multiplicado por 0 é 0
+      (if (> a 0)
+          (+ b (multiplica (- a 1) b)))))        ; Soma `b` recursivamente `a` vezes
